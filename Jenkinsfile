@@ -1,15 +1,33 @@
 pipeline{
     agent any
     stages{
-        stage('main echo'){
+        stage('always'){
             steps{
-               echo "this is running from master branch"
+                echo "this is main steps always executable"
             }
-	  }
-        stage('fix-1 echo'){
+        }
+        stage('main steps'){
+            when {branch 'main'}
             steps{
-               echo "this is running from fix-1 branch"
+                echo "this is running from main branch"
             }
-	    }
+        }
+        stage('fix-2 steps'){
+            when {branch 'fix-2'}
+            steps{
+                echo "this is running from main branch"
+            }
+        }
+        stage('fix-1 steps'){
+            when {branch 'fix-1'}
+            steps{
+                echo "this is running from main branch"
+            }
+        }
+    }
+    post{
+        always{
+            echo "job finished"
+        }
     }
 }
