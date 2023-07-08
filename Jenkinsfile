@@ -34,7 +34,7 @@ pipeline{
                 }
             }
             steps{
-                echo "this is from input block"
+                echo "this is hello to $PERSON"
             }
         }
     }
