@@ -25,6 +25,8 @@ pipeline{
             }
         }
         stage('take input'){
+            parameters string(name: 'PROCESS', defaultValue: 'NO', description: 'should execute this')
+            when { $PROCESS == 'YES'}
             input {
                 message "Should we continue?"
                 ok "Yes, we should."
